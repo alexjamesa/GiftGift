@@ -1,0 +1,51 @@
+
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,900' rel='stylesheet' type='text/css'>
+<script type='text/javascript' src='knockout-3.4.0.js'></script>
+</head>
+<body>
+	<h1><span class="title1">Gift</span><span class="title2">Gift</span></h1>
+	<div class="container">
+		<ul>
+			<!-- ko foreach: givers -->
+		    <li>
+		    	<div class="giver_container">
+			        <div class="giver">
+			        	<span data-bind="visible: !editing(), text: name, click: edit"></span>
+						<input data-bind="visible: editing(), value: name, hasFocus: editing"/>
+					</div>
+					<div class="exclusions">
+		        		<span data-bind="visible:exclusion().length == 0 && addingExclusion() == false,click: addExclusion">Add exclusion</span>
+		        		<span data-bind="visible:exclusion().length > 0 && addingExclusion() == false">Not for </span>
+		        		<span data-bind="visible:exclusion().length > 0 && addingExclusion() == false, text: exclusion,click: addExclusion"></span>
+		        		<input data-bind="visible: addingExclusion(), value:exclusion, hasFocus: addingExclusion"/>
+		        	</div>
+		        </div>
+				<div class="givesTo">gives to</div>
+		    	<div class="receiver" data-bind="text: givingTo"></div>
+		        <div class="delete" data-bind="click: $parent.removeGiver"></div>
+		    </li>
+		    <!-- /ko -->
+		    <li id="final_row">
+		    	<div id="add" data-bind="click: addGiver"></div>
+		    	<div id="draw" data-bind="click: draw">Draw</div>
+		    	<div id="clear" data-bind="click: clearGivees"></div>
+		    </li>
+		</ul>
+	</div>
+	<script src="script.js"></script>
+	<p id="footer">Learn <a href="http://www.tenkettles.com/waay">music theory</a> and <a href="https://itunes.apple.com/ca/app/heareq-ear-training-for-musicians/id840906542?mt=8">train your ears</a> with <a href="http://www.tenkettles.com/news/">Ten Kettles</a>.</p>
+</body>
+</html>
+
+<!--
+NT
+1) Prevent draw when not possible
+2) Prevent clear when givees blank
+3) Add tap-to-toggle givees (show present otherwise)
+4) add simple fade effects to add/show rows
+5) Make responsive
+6) Put online!
+-->

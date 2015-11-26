@@ -1,0 +1,225 @@
+$person-button-width:180px;
+$gives-to-width:120px;
+$delete-width:32px;
+$person-button-height:60px;
+
+$narrow-width:108px;
+$draw-width:279px;
+
+$off-black:#222222;
+$light-green:#87E689;
+$light-red:#F06060;
+$light-grey:#9B9B9B;
+$white:#FFFFFF;
+$off-white:#F5F5F5;
+
+
+// ------------------------------------------------------------- UTILITIES
+
+@mixin retina{
+	@media
+	only screen and (-webkit-min-device-pixel-ratio: 2),
+	only screen and (   min--moz-device-pixel-ratio: 2),
+	only screen and (     -o-min-device-pixel-ratio: 2/1),
+	only screen and (        min-device-pixel-ratio: 2),
+	only screen and (                min-resolution: 192dpi),
+	only screen and (                min-resolution: 2dppx) { 
+		@content;
+	}
+}
+
+// ------------------------------------------------------------- OVERALL SETUP
+
+
+html, body, div, span, applet, object, iframe, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, label, legend, p, blockquote, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: 'Lato', sans-serif;;
+  vertical-align: baseline;
+}
+
+body{
+	background-color:$off-white;
+	padding:72px 0 18px;
+}
+
+h1{
+	font-weight:900;
+	text-align:center;
+	font-size:64px;
+}
+.title1{
+	color:$light-red;
+}
+.title2{
+	color:$light-green;
+}
+
+.container{
+	width:533px;
+	overflow:auto;
+	margin:33px auto 72px;
+	padding:40px 60px;
+	background-color:$white;
+	$border-radius:12px;
+	-webkit-border-radius: $border-radius;
+	-moz-border-radius: $border-radius;
+	border-radius: $border-radius;
+}
+
+ul{
+	padding:0;
+	margin:0;
+    list-style-type: none;
+}
+
+li{
+	clear:left;
+	margin-bottom:24px;
+	overflow:auto;
+}
+
+.giver,
+.givesTo,
+.receiver,
+.delete,
+#draw,
+#add,
+#clear{
+	height:$person-button-height;
+	line-height:$person-button-height;;
+	text-align:center;
+	overflow:auto;
+	float:left;
+}
+
+.giver,
+.receiver,
+#add,
+#draw,
+#clear{
+	$border-radius:15px;
+	-webkit-border-radius: $border-radius;
+	-moz-border-radius: $border-radius;
+	border-radius: $border-radius;
+	font-size:20px;
+}
+
+// ------------------------------------------------------------- GIVING ROWS
+
+.giver_container{
+	float:left;
+}
+
+.giver{
+	width:$person-button-width;
+	background-color:$light-green;
+	color:$white;
+}
+
+.giver input{
+	text-align:center;
+	line-height:$person-button-height/2.0;
+	margin-top:$person-button-height/4.0;
+	width:100%;
+	background-color:transparent;
+	color:$white;
+}
+
+.receiver{
+	width:$person-button-width;
+	background-color:$light-red;
+	color:$white;
+}
+
+.exclusions{
+	width:$person-button-width;
+	font-size:12px;
+	font-style: italic;
+	text-align: right;
+	color:$light-red;
+}
+
+.exclusions input{
+	text-align:right;
+	color:inherit;
+}
+
+.givesTo{
+	width:$gives-to-width;
+	font-size:18px;
+	color:$off-black;
+}
+
+.delete{
+	width:$delete-width;
+	margin-left:20px;
+	background-image:url("images/delete.png");
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size:32px 32px;
+
+	@include retina{
+		background-image:url("images/delete@2x.png");
+	}
+}
+
+// ------------------------------------------------------------- FINAL ROW
+
+#final_row{
+	margin-top:60px;
+	margin-bottom:0;
+}
+
+#add{
+	width:$narrow-width;
+	background-color:$light-green;
+	background-image:url("images/add.png");
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size:32px 32px;
+
+	@include retina{
+		background-image:url("images/add@2x.png");
+	}
+}
+
+#draw{
+	width:$draw-width;
+	background-color:$light-red;
+	margin-left:19px;
+	color:$white;
+}
+
+#clear{
+	width:$narrow-width;
+	background-color:$light-grey;
+	margin-left:19px;
+	background-image:url("images/clear.png");
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size:25px 25px;
+
+	@include retina{
+		background-image:url("images/clear@2x.png");
+	}
+}
+
+#footer{
+	font-size:12px;
+	color:$off-black;
+	text-align:center;
+}
+
+#footer a{
+	color:$off-black;
+}
+
+#footer a:hover{
+	color:$light-red;
+}
