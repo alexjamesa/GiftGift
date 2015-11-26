@@ -80,6 +80,14 @@ function ViewModel() {
 			}
 		}
 	}
+
+	this.showRow = function(elem) { 
+		if (elem.nodeType === 1) $(elem).hide().fadeIn() 
+	}
+    this.hideRow = function(elem) { 
+    	if (elem.nodeType === 1) $(elem).fadeOut(function() { $(elem).remove(); }) 
+    }
+	
 }
 
 function findIndexOf(object,array){
@@ -97,7 +105,7 @@ function Giver(name){
 	this.givingTo=ko.observable("");
 	this.editing=ko.observable(false);
 	this.addingExclusion=ko.observable(false);
-	this.showReceiver=ko.observable(false);
+	this.showReceiver=ko.observable(false); // not used yet
 	this.edit = function(){
 		this.editing(true)
 	}
