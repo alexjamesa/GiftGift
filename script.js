@@ -7,6 +7,7 @@ function ViewModel() {
 		new Giver("Eddie"),
 		new Giver("Gary"),
 		]);
+
 	self.removeGiver=function(){
 		self.clearGivees();
 		self.givers.remove(this);
@@ -18,17 +19,18 @@ function ViewModel() {
 	self.clearGivers=function(){
 		self.givers.removeAll();
 	}
-	self.clearGivees=function(){
-		for (var i=0;i<self.givers().length;i++){
-			self.givers()[i].givingTo("");
-		}
-	}
-	self.giverNames=function(){
+		self.giverNames=function(){
 		allGiverNames=new Array();
 		for (var i=0;i<self.givers().length;i++){
 			allGiverNames.push(self.givers()[i].name());
 		}
 		return allGiverNames;
+	}
+
+	self.clearGivees=function(){
+		for (var i=0;i<self.givers().length;i++){
+			self.givers()[i].givingTo("");
+		}
 	}
 	self.giveeNames=function(){
 		allGiveeNames=new Array();
@@ -36,6 +38,16 @@ function ViewModel() {
 			allGiveeNames.push(self.givers()[i].givingTo());
 		}
 		return allGiveeNames;
+	}
+
+	self.numberOfGivees=function(){
+		var giveesCount=0
+		for (var i=0;i<self.givers().length;i++){
+			if (self.givers()[i].givingTo() != ""){
+				giveesCount++;
+			}
+		}
+		return giveesCount;
 	}
 	self.randomGiveeForGiver=function(giver,pool){
 		var trimmedPool=giver.trimGiveePool(pool);
@@ -85,6 +97,7 @@ function Giver(name){
 	this.givingTo=ko.observable("");
 	this.editing=ko.observable(false);
 	this.addingExclusion=ko.observable(false);
+	this.showReceiver=ko.observable(false);
 	this.edit = function(){
 		this.editing(true)
 	}

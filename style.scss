@@ -110,6 +110,16 @@ li{
 	font-size:20px;
 }
 
+.giver,
+.delete,
+.clear,
+#add,
+#draw,
+#clear,
+.exclusions{
+	cursor: pointer;
+}
+
 // ------------------------------------------------------------- GIVING ROWS
 
 .giver_container{

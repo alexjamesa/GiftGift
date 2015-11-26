@@ -18,8 +18,8 @@
 					</div>
 					<div class="exclusions">
 		        		<span data-bind="visible:exclusion().length == 0 && addingExclusion() == false,click: addExclusion">Add exclusion</span>
-		        		<span data-bind="visible:exclusion().length > 0 && addingExclusion() == false">Not for </span>
-		        		<span data-bind="visible:exclusion().length > 0 && addingExclusion() == false, text: exclusion,click: addExclusion"></span>
+		        		<span data-bind="visible:exclusion().length > 0 && addingExclusion() == false,click: addExclusion">Not giving to
+		        		<span data-bind="text: exclusion"></span></span>
 		        		<input data-bind="visible: addingExclusion(), value:exclusion, hasFocus: addingExclusion"/>
 		        	</div>
 		        </div>
@@ -31,7 +31,7 @@
 		    <li id="final_row">
 		    	<div id="add" data-bind="click: addGiver"></div>
 		    	<div id="draw" data-bind="click: draw">Draw</div>
-		    	<div id="clear" data-bind="click: clearGivees"></div>
+		    	<div id="clear" data-bind="click: clearGivees, enabled: numberOfGivees() > 0, style: {opacity: numberOfGivees() > 0 ? 1 : 0.2 }"></div>
 		    </li>
 		</ul>
 	</div>
@@ -43,7 +43,6 @@
 <!--
 NT
 1) Prevent draw when not possible
-2) Prevent clear when givees blank
 3) Add tap-to-toggle givees (show present otherwise)
 4) add simple fade effects to add/show rows
 5) Make responsive
