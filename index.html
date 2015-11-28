@@ -1,33 +1,35 @@
 
 <html>
 <head>
-<link rel="stylesheet" href="style.css">
-<link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,900' rel='stylesheet' type='text/css'>
-<script type='text/javascript' src='jquery-1.11.3.min.js'></script>
-<script type='text/javascript' src='knockout-3.4.0.js'></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	<title>GiftGift</title>
+	<link rel="stylesheet" href="style.css">
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,900' rel='stylesheet' type='text/css'>
+	<script type='text/javascript' src='jquery-1.11.3.min.js'></script>
+	<script type='text/javascript' src='knockout-3.4.0.js'></script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-70694164-1', 'auto');
-  ga('send', 'pageview');
-</script>
-<script>
-	var trackOutboundLink = function(url,label) {
-	   ga('send', 'event', 'outbound', 'click', label, {'hitCallback':
-	     function () {
-	     document.location = url;
-	     }
-	   });
-	}
-</script>
+	  ga('create', 'UA-70694164-1', 'auto');
+	  ga('send', 'pageview');
+	</script>
+	<script>
+		var trackOutboundLink = function(url,label) {
+		   ga('send', 'event', 'outbound', 'click', label, {'hitCallback':
+		     function () {
+		     document.location = url;
+		     }
+		   });
+		}
+	</script>
 </head>
 <body>
 	<h1><span class="title1">Gift</span><span class="title2">Gift</span></h1>
 	<div class="container">
 		<ul>
+
 			<!-- ko foreach: {data:givers, beforeRemove: hideRow, afterAdd: showRow} -->
 		    <li>
 		    	<div class="giver_container">
@@ -36,20 +38,21 @@
 						<input data-bind="visible: editing(), value: name, hasFocus: editing"/>
 					</div>
 					<div class="exclusions">
-		        		<span data-bind="visible:exclusion().length == 0 && addingExclusion() == false,click: addExclusion">Add exclusion</span>
-		        		<span data-bind="visible:exclusion().length > 0 && addingExclusion() == false,click: addExclusion">Not giving to
+		        		<span data-bind="visible:exclusion().length == 0 && addingExclusion() == false,click: function(){$parent.clearGivees();addExclusion()}">Add exclusion</span>
+		        		<span data-bind="visible:exclusion().length > 0 && addingExclusion() == false,click: function(){$parent.clearGivees();addExclusion()}">Not giving to
 		        		<span data-bind="text: exclusion"></span></span>
 		        		<input data-bind="visible: addingExclusion(), value:exclusion, hasFocus: addingExclusion"/>
 		        	</div>
 		        </div>
 				<div class="givesTo">gives to</div>
-		    	<div class="receiver" data-bind="text: givingTo"></div>
+		    	<div class="receiver" data-bind="click: function(){var newValue=!showReceiver();$parent.hideAllReceivers();showReceiver(newValue)}, text: receiverText(), css: {presentBackground: !showReceiver() && hasReceiver()}"></div> 
 		        <div class="delete" data-bind="click: $parent.removeGiver"></div>
 		    </li>
 		    <!-- /ko -->
+
 		    <li id="final_row">
 		    	<div id="add" data-bind="click: addGiver"></div>
-		    	<div id="draw" data-bind="click: draw">Draw</div>
+		    	<div id="draw" data-bind="click: function(){draw()}, enabled: isValidDraw(), style: {opacity: isValidDraw() ? 1 : 0.2}">Draw</div>
 		    	<div id="clear" data-bind="click: clearGivees, enabled: numberOfGivees() > 0, style: {opacity: numberOfGivees() > 0 ? 1 : 0.2 }"></div>
 		    </li>
 		</ul>
@@ -61,8 +64,7 @@
 
 <!--
 NT
-1) Add tap-to-toggle givees (show present otherwise)
-2) Prevent draw when not possible
-3) Make responsive
-4) Add presents (white line drawings) to backdrop
+1) Add presents (white line drawings) to backdrop
+2) Make responsive
+3) Add tool-tips (1) Click to change or add names 2) Add any exclusions (if you don't want Eddie to give to Patch) 2) Press draw!)
 -->

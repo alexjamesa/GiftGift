@@ -114,6 +114,7 @@ li{
 .delete,
 .clear,
 #add,
+.receiver,
 #draw,
 #clear,
 .exclusions{
@@ -145,6 +146,17 @@ li{
 	width:$person-button-width;
 	background-color:$light-red;
 	color:$white;
+}
+
+.presentBackground{
+	background-image:url("images/gift.png");
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size:32px 32px;
+
+	@include retina{
+		background-image:url("images/gift@2x.png");
+	}
 }
 
 .exclusions{
